@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.7 (J219)";
+const sVersion = "ver 0.3.8 (J219)";
 
 class Main extends Component {
   render() {
@@ -12,8 +12,8 @@ class Main extends Component {
           {sVerInfo}
         </header>
         <hr />
-        <div id="hello1"></div>
-        <div id="hello2"></div>
+        <div id="hello1">hello 1</div>
+        <div id="hello2">hello 2</div>
         <hr />
         <div id="textarea1"></div>
         <hr />
@@ -69,17 +69,23 @@ class TextAreaCounter extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this._onChange = this._onChange.bind(this);
-  }
-  _onChange(ev: React.ChangeEvent<HTMLTextAreaElement>) {
-    console.log(ev.target.value);
-    console.log("4 " + ev);
-    //this.setState({text: ev.target.value});
-  };
-  render() {
     const sText = this.props.text || "no text"
+    this.state = {text: sText,};
+    //this.setState({'text': sText});
+  }
+
+  _onChange(ev: React.ChangeEvent<HTMLTextAreaElement>) {
+    //console.log(ev.target.value);
+    //console.log("5 " + ev);
+    this.setState({'text': ev.target.value});
+  };
+
+  render() {
+    //const sText = this.props.text || 'no state'
+    const sText = this.state.text || ''
     return (
       <div id="textareacounter">
-        <textarea defaultValue={sText} onChange={this._onChange} />
+        <textarea defaultValue={sText} rows={14} cols={40} onChange={this._onChange} />
         <h3>{sText.length}</h3>
       </div>
     );
@@ -89,8 +95,8 @@ class TextAreaCounter extends Component<IProps, IState> {
 const Hello1 = <Hello path = "1.txt" text = "one text..." />
 
 ReactDOM.render(<Main />, document.getElementById('app'));
-ReactDOM.render(Hello1, document.getElementById('hello1'));
-ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
+// ReactDOM.render(Hello1, document.getElementById('hello1'));
+// ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
 ReactDOM.render(<TextAreaCounter text = "text in textarea.." />, document.getElementById('textarea1'));
 
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-//import * as App from './App';
 
-const sVersion = "ver 0.2.1 (J219)";
+const sVersion = "ver 0.2.2 (J219)";
 
 class Main extends Component {
   render() {
@@ -12,6 +11,9 @@ class Main extends Component {
         <header className="App-header">
           {sVerInfo}
         </header>
+        <hr />
+        <div id="hello"></div>
+        <hr />
       </div>
     );
   }

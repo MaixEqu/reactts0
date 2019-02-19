@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.2 (J219)";
+const sVersion = "ver 0.3.3 (J219)";
 
 class Main extends Component {
   render() {
@@ -30,7 +30,6 @@ interface IState {
 class Hello extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    // this.setState({text: "state text"});
   }
   render() {
     const sFPath = location.href + '/data/' + this.props.path
@@ -54,11 +53,10 @@ const sGetTxt = async (path: string): Promise<void> => {
   }
 }
 
-//const sDataUrl = location.href + '/data/1.txt'
-//console.log(sDataUrl)
-//sGetTxt(sDataUrl)
+const Hello1 = <Hello path = "1.txt" />
+
 ReactDOM.render(<Main />, document.getElementById('app'));
-ReactDOM.render(<Hello path = "1.txt" />, document.getElementById('hello1'));
+ReactDOM.render(Hello1, document.getElementById('hello1'));
 ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
 
 

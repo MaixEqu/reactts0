@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.1 (J219)";
+const sVersion = "ver 0.3.2 (J219)";
 
 class Main extends Component {
   render() {
@@ -22,6 +22,7 @@ class Main extends Component {
 
 interface IProps {
   text?: string;
+  path?: string;
 }
 interface IState {
   text?: string
@@ -32,26 +33,18 @@ class Hello extends Component<IProps, IState> {
     // this.setState({text: "state text"});
   }
   render() {
-    console.log("dd: " + this.props.text);
+    const sFPath = location.href + '/data/' + this.props.path
+    console.log("path: " + sFPath);
+    sGetTxt(sFPath);
     return (
       <div className="Elem1">
-          <h3>It is just 'hello' test. Prop: {this.props.text}</h3>
+          <h3>It is just 'hello' test. Path: '{sFPath}'</h3>
       </div>
     );
   }
 }
 
 const sGetTxt = async (path: string): Promise<void> => {
-  /*
-  fetch(path)
-    .then((response) => response.text())
-    .then((sRes) => {
-      console.log(sRes);
-    })
-    .catch((error: Error) => {
-      console.error(error);
-    });
-  */
   try {
     const response = await fetch(path);
     const text = await response.text();
@@ -61,11 +54,11 @@ const sGetTxt = async (path: string): Promise<void> => {
   }
 }
 
-const sDataUrl = location.href + '/data/1.txt'
-console.log(sDataUrl)
-sGetTxt(sDataUrl)
+//const sDataUrl = location.href + '/data/1.txt'
+//console.log(sDataUrl)
+//sGetTxt(sDataUrl)
 ReactDOM.render(<Main />, document.getElementById('app'));
-ReactDOM.render(<Hello text="prop = 01" />, document.getElementById('hello1'));
-ReactDOM.render(<Hello text="prop = 02" />, document.getElementById('hello2'));
+ReactDOM.render(<Hello path = "1.txt" />, document.getElementById('hello1'));
+ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
 
 

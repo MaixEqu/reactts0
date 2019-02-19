@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.5 (J219)";
+const sVersion = "ver 0.3.6 (J219)";
 
 class Main extends Component {
   render() {
@@ -14,6 +14,8 @@ class Main extends Component {
         <hr />
         <div id="hello1"></div>
         <div id="hello2"></div>
+        <hr />
+        <div id="textarea1"></div>
         <hr />
       </div>
     );
@@ -28,11 +30,14 @@ interface IState {
   text?: string
 }
 class Hello extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
+  constructor(props: IProps, states: IState) {
+    super(props, states);
+    //states.text = "sdfdsf"
   }
+  //onClick(e: React.MouseEvent<HTMLInputElement>): void {
   onClick() {
-    console.log("click")
+    //this.setState({text: "dd -- ww"})
+    console.log("click on 3")
   }
   render() {
     const sFPath = location.href + '/data/' + this.props.path
@@ -59,10 +64,46 @@ const sGetTxt = async (path: string): Promise<void> => {
   }
 }
 
-const Hello1 = <Hello path = "1.txt" />
+class TextAreaCounter extends Component<IProps, IState> {
+
+  /*
+  propTypes: { 
+  text: React.PropTypes.string, 
+  }, 
+  getDefaultProps: function() { 
+  46 
+  return { 
+  text: '', 
+  }; 
+  },
+  */ 
+  render() {
+    const sText = this.props.text || "no text"
+    return (
+      <div id="textareacounter">
+        <textarea defaultValue={sText} />
+        <h3>{sText.length}</h3>
+      </div>
+    );
+  }
+    
+    /*
+  React.DOM .div(null, 
+  React.DOM .textarea({ 
+  defaultValue: this.props.text, 
+  }), 
+  React.DOM .h3(null, this.props.text.length) 
+  ); 
+  } 
+  */
+} 
+
+
+const Hello1 = <Hello path = "1.txt" text = "one text..." />
 
 ReactDOM.render(<Main />, document.getElementById('app'));
 ReactDOM.render(Hello1, document.getElementById('hello1'));
 ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
+ReactDOM.render(<TextAreaCounter text = "text in textarea..." />, document.getElementById('textarea1'));
 
 

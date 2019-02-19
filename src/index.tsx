@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.6 (J219)";
+const sVersion = "ver 0.3.7 (J219)";
 
 class Main extends Component {
   render() {
@@ -64,46 +64,33 @@ const sGetTxt = async (path: string): Promise<void> => {
   }
 }
 
-class TextAreaCounter extends Component<IProps, IState> {
 
-  /*
-  propTypes: { 
-  text: React.PropTypes.string, 
-  }, 
-  getDefaultProps: function() { 
-  46 
-  return { 
-  text: '', 
-  }; 
-  },
-  */ 
+class TextAreaCounter extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this._onChange = this._onChange.bind(this);
+  }
+  _onChange(ev: React.ChangeEvent<HTMLTextAreaElement>) {
+    console.log(ev.target.value);
+    console.log("4 " + ev);
+    //this.setState({text: ev.target.value});
+  };
   render() {
     const sText = this.props.text || "no text"
     return (
       <div id="textareacounter">
-        <textarea defaultValue={sText} />
+        <textarea defaultValue={sText} onChange={this._onChange} />
         <h3>{sText.length}</h3>
       </div>
     );
   }
-    
-    /*
-  React.DOM .div(null, 
-  React.DOM .textarea({ 
-  defaultValue: this.props.text, 
-  }), 
-  React.DOM .h3(null, this.props.text.length) 
-  ); 
-  } 
-  */
 } 
-
 
 const Hello1 = <Hello path = "1.txt" text = "one text..." />
 
 ReactDOM.render(<Main />, document.getElementById('app'));
 ReactDOM.render(Hello1, document.getElementById('hello1'));
 ReactDOM.render(<Hello path = "2.txt" />, document.getElementById('hello2'));
-ReactDOM.render(<TextAreaCounter text = "text in textarea..." />, document.getElementById('textarea1'));
+ReactDOM.render(<TextAreaCounter text = "text in textarea.." />, document.getElementById('textarea1'));
 
 

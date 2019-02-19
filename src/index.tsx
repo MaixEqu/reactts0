@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.0 (J219)";
+const sVersion = "ver 0.3.1 (J219)";
 
 class Main extends Component {
   render() {
@@ -41,7 +41,8 @@ class Hello extends Component<IProps, IState> {
   }
 }
 
-const sGetTxt = (path: string): void => {
+const sGetTxt = async (path: string): Promise<void> => {
+  /*
   fetch(path)
     .then((response) => response.text())
     .then((sRes) => {
@@ -50,6 +51,14 @@ const sGetTxt = (path: string): void => {
     .catch((error: Error) => {
       console.error(error);
     });
+  */
+  try {
+    const response = await fetch(path);
+    const text = await response.text();
+    console.log(text);
+  } catch(error) {
+    console.error(error);
+  }
 }
 
 const sDataUrl = location.href + '/data/1.txt'

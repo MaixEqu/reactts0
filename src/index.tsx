@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.2.2 (J219)";
+const sVersion = "ver 0.2.3 (J219)";
 
 class Main extends Component {
   render() {
@@ -12,25 +12,37 @@ class Main extends Component {
           {sVerInfo}
         </header>
         <hr />
-        <div id="hello"></div>
+        <div id="hello1"></div>
+        <div id="hello2"></div>
         <hr />
       </div>
     );
   }
 }
 
-interface IProps {}
-interface IState {}
+interface IProps {
+  text?: string;
+}
+interface IState {
+  text?: string
+}
 class Hello extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    // this.setState({text: "state text"});
+  }
   render() {
+    // console.log("dd: " + this.props.text);
     return (
       <div className="Elem1">
-          <h3>It is just 'hello' test</h3>
+          <h3>It is just 'hello' test. Prop: {this.props.text}</h3>
       </div>
     );
   }
 }
 
 ReactDOM.render(<Main />, document.getElementById('app'));
-ReactDOM.render(<Hello />, document.getElementById('hello'));
+ReactDOM.render(<Hello text="prop = 01" />, document.getElementById('hello1'));
+ReactDOM.render(<Hello text="prop = 02" />, document.getElementById('hello2'));
+
 

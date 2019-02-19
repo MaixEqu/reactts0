@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.3 (J219)";
+const sVersion = "ver 0.3.4 (J219)";
 
 class Main extends Component {
   render() {
@@ -35,9 +35,11 @@ class Hello extends Component<IProps, IState> {
     const sFPath = location.href + '/data/' + this.props.path
     console.log("path: " + sFPath);
     sGetTxt(sFPath);
+    const sText = (this.state && 'text' in this.state) ? this.state.text : "no text now."
     return (
       <div className="Elem1">
-          <h3>It is just 'hello' test. Path: '{sFPath}'</h3>
+          <h4>It is just 'hello' test. Path: '{sFPath}'</h4>
+          <div>Text: {sText}</div>
       </div>
     );
   }

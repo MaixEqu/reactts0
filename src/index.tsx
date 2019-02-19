@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.3.4 (J219)";
+const sVersion = "ver 0.3.5 (J219)";
 
 class Main extends Component {
   render() {
@@ -31,6 +31,9 @@ class Hello extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
   }
+  onClick() {
+    console.log("click")
+  }
   render() {
     const sFPath = location.href + '/data/' + this.props.path
     console.log("path: " + sFPath);
@@ -39,6 +42,7 @@ class Hello extends Component<IProps, IState> {
     return (
       <div className="Elem1">
           <h4>It is just 'hello' test. Path: '{sFPath}'</h4>
+          <input type="button" defaultValue={" + " + this.props.path} onClick={this.onClick} />
           <div>Text: {sText}</div>
       </div>
     );

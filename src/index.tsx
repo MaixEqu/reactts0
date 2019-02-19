@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const sVersion = "ver 0.2.3 (J219)";
+const sVersion = "ver 0.3.0 (J219)";
 
 class Main extends Component {
   render() {
@@ -32,7 +32,7 @@ class Hello extends Component<IProps, IState> {
     // this.setState({text: "state text"});
   }
   render() {
-    // console.log("dd: " + this.props.text);
+    console.log("dd: " + this.props.text);
     return (
       <div className="Elem1">
           <h3>It is just 'hello' test. Prop: {this.props.text}</h3>
@@ -41,6 +41,20 @@ class Hello extends Component<IProps, IState> {
   }
 }
 
+const sGetTxt = (path: string): void => {
+  fetch(path)
+    .then((response) => response.text())
+    .then((sRes) => {
+      console.log(sRes);
+    })
+    .catch((error: Error) => {
+      console.error(error);
+    });
+}
+
+const sDataUrl = location.href + '/data/1.txt'
+console.log(sDataUrl)
+sGetTxt(sDataUrl)
 ReactDOM.render(<Main />, document.getElementById('app'));
 ReactDOM.render(<Hello text="prop = 01" />, document.getElementById('hello1'));
 ReactDOM.render(<Hello text="prop = 02" />, document.getElementById('hello2'));
